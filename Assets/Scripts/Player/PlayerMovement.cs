@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 moveInput, CharacterController controller)
     {
-        Vector3 moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        Vector3 moveDirection = new(moveInput.x, 0, moveInput.y);
         controller.Move(m_speed * Time.deltaTime * moveDirection);
     }
 

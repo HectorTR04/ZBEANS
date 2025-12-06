@@ -1,13 +1,16 @@
 using Assets.Scripts.AI.FiniteStateMachine;
 using UnityEngine;
 
-public class StateMachine
+public class StateMachine : MonoBehaviour
 {
-    private IBombState currentState;
+    private BombAgent m_agent;
+    private State currentState;
+    public State CurrentState { get { return currentState; } }
 
     void Start()
     {
-        currentState = new PatrolState();
+        m_agent = GetComponent<BombAgent>();
+        currentState = new PatrolState(m_agent, m_agent.transform.position);
         currentState.Enter();
     }
 
@@ -16,7 +19,7 @@ public class StateMachine
         currentState.Update();
     }
 
-    public void TransitionToNewState(IBombState nextState)
+    public void TransitionToNewState(State nextState)
     {
         currentState.Exit();
 
