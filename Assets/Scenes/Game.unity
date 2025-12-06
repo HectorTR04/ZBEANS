@@ -402,6 +402,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1506999521 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6595427434921114001, guid: 6aa55af626160974a974ca9532bdf44a, type: 3}
+  m_PrefabInstance: {fileID: 8296876754187683262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &432664968143160415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -412,10 +417,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 763957071127863547, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 763957071127863547, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1667663757213522654, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
@@ -458,18 +459,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2825576488258761853, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
-      propertyPath: m_Mesh
+    - target: {fileID: 3911009833819886396, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
+      propertyPath: m_playerCam
       value: 
-      objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 4530164588005434083, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
-      propertyPath: m_sensitivity
-      value: 0.3
+      objectReference: {fileID: 1506999521}
+    - target: {fileID: 3911009833819886396, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
+      propertyPath: m_sanityLossPerSecond
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5050637294729925226, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+    - target: {fileID: 4530164588005434083, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
+      propertyPath: m_playerCam
       value: 
-      objectReference: {fileID: 2100000, guid: 107c15507a4654d4790d94a978387935, type: 2}
+      objectReference: {fileID: 1506999521}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -490,6 +491,10 @@ PrefabInstance:
     - target: {fileID: 7650729036762577344, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650729036762577344, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7934255136166656513, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
       propertyPath: m_LocalPosition.x

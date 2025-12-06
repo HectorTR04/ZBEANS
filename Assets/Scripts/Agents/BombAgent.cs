@@ -8,10 +8,12 @@ public class BombAgent : MonoBehaviour
     [SerializeField] private float m_explodingRange;
     [SerializeField] private float m_patrollingRange;
     [SerializeField] private float m_speed;
+    [SerializeField] private float m_rotationSpeed;
 
     public bool IsExploding { get; set; }
     public Vector3[] PatrolPoints { get; set; }
     public float Speed { get { return m_speed; } }
+    public float RotationSpeed { get { return m_rotationSpeed; } }
     public Transform Target { get { return m_target; } }
     public float PatrollingRange { get { return m_patrollingRange; } }
 
@@ -19,10 +21,10 @@ public class BombAgent : MonoBehaviour
 
     void Start()
     {
+        PatrolPoints = new Vector3[4];
         m_stateMachine = GetComponent<StateMachine>();
         IsExploding = false;
     }
-
     void Update()
     {
         if (!HasDetectedTarget() && m_stateMachine.CurrentState is not PatrolState)

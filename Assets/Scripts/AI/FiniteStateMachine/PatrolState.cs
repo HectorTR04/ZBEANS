@@ -5,9 +5,6 @@ public class PatrolState : State
 {
     private Vector3 m_lastPosition;
 
-    private Vector3 m_firstPatrolPoint;
-    private Vector3 m_secondPatrolPoint;
-    private Vector3 m_thirdPatrolPoint;
     private int m_currentPatrolIndex = 0;
 
     public PatrolState(BombAgent agent, Vector3 lastPosition)
@@ -18,7 +15,7 @@ public class PatrolState : State
     public override void Enter()
     {
         SetPatrolPoints();
-        Debug.Log($"[{m_agent.gameObject.name}] Entered Patrol State");
+        //Debug.Log($"[{m_agent.gameObject.name}] Entered Patrol State");
     }
 
     public override void Update()
@@ -27,6 +24,17 @@ public class PatrolState : State
             return;
 
         Vector3 target = m_agent.PatrolPoints[m_currentPatrolIndex];
+
+        Vector3 direction = (target - m_agent.transform.position).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            m_agent.transform.rotation = Quaternion.Slerp(
+                m_agent.transform.rotation,
+                lookRotation,
+                Time.deltaTime * m_agent.RotationSpeed);
+        }
 
         m_agent.transform.position = Vector3.MoveTowards(
             m_agent.transform.position,
@@ -47,22 +55,17 @@ public class PatrolState : State
 
     public override void Exit()
     {
-        m_firstPatrolPoint = Vector3.zero;
-        m_secondPatrolPoint = Vector3.zero;
-        m_thirdPatrolPoint = Vector3.zero;
-        Debug.Log($"[{m_agent.gameObject.name}] Left Patrol State");
+        //Debug.Log($"[{m_agent.gameObject.name}] Left Patrol State");
     }
 
     private void SetPatrolPoints()
     {
-        m_firstPatrolPoint = m_lastPosition;
-
-        m_secondPatrolPoint = m_firstPatrolPoint 
-            + new Vector3(Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange), 0f, Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange));
-
-        m_thirdPatrolPoint = m_secondPatrolPoint 
-            + new Vector3(Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange), 0f, Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange));
-
-        m_agent.PatrolPoints = new[] { m_firstPatrolPoint, m_secondPatrolPoint, m_thirdPatrolPoint };
+        m_agent.PatrolPoints[0] = m_lastPosition;
+        for(int i = 1; i < m_agent.PatrolPoints.Length; i++)
+        {
+            m_agent.PatrolPoints[i] = 
+                m_agent.PatrolPoints[i-1] + new Vector3(Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange), 
+                0f, Random.Range(-m_agent.PatrollingRange, m_agent.PatrollingRange));
+        }
     }
 }

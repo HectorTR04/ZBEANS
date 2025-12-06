@@ -65,6 +65,7 @@ MonoBehaviour:
   m_explodingRange: 0.3
   m_patrollingRange: 3
   m_speed: 1
+  m_rotationSpeed: 3
 --- !u!33 &6386746574656903647
 MeshFilter:
   m_ObjectHideFlags: 0

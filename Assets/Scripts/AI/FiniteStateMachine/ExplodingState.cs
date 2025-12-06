@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.AI.FiniteStateMachine;
-using UnityEngine;
 
 public class ExplodingState : State
 {
@@ -9,7 +8,7 @@ public class ExplodingState : State
     }
     public override void Enter()
     {
-        Debug.Log($"Entered Exploding State");
+        //Debug.Log($"Entered Exploding State");
     }
     public override void Update()
     {
@@ -26,7 +25,6 @@ public class ExplodingState : State
     private void Explode()
     {
         m_agent.IsExploding = true;
-
         Exit();
     }
 }
