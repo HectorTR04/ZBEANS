@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -57,6 +58,10 @@ public class PlayerController : MonoBehaviour
         m_playerMovement.Move(m_movementActions.Walk.ReadValue<Vector2>(), m_characterController);
         m_playerMovement.Look();
         m_scoreText.text = $"Score: {CurrentScore}"; 
+        if(CurrentHealth <= 0)
+        {
+            SceneManager.LoadScene("LoseMenu");
+        }
     }
     #endregion
 

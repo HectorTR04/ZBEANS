@@ -26,11 +26,11 @@ public class ZombieAgent : MonoBehaviour
     private StateMachine m_stateMachine;
 
     #region Unity Method
-    void Start()
+    void Awake()
     {
         PatrolPoints = new Vector3[4];
         m_stateMachine = GetComponent<StateMachine>();
-        Health = 3;
+        Health = 1;
         Damage = 10;
     }
     void Update()
@@ -54,6 +54,7 @@ public class ZombieAgent : MonoBehaviour
             {
                 player.IncreaseScore(m_scoreOnDeath);
             }
+            Health = 1;
             gameObject.SetActive(false);
         }
     }
