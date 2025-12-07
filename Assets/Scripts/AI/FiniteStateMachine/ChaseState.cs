@@ -4,7 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class ChaseState : State
 {
-    public ChaseState(BombAgent agent)
+    public ChaseState(ZombieAgent agent)
     {
         m_agent = agent;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement m_playerMovement;
     private CharacterController m_characterController;
     private SanityController m_sanityController;
+    private GunController m_gunController;
 
     private float m_currentHealth;
 
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         m_playerMovement = GetComponent<PlayerMovement>();
         m_characterController = GetComponent<CharacterController>();
         m_sanityController = GetComponent<SanityController>();
+        m_gunController = GetComponent<GunController>();
         m_sanityController.Initialize(m_maxSanity);
         Cursor.lockState = CursorLockMode.Confined;
     }
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         m_sanityController.UpdateSanity(m_sanityGainPerSecond, m_sanityLossPerSecond);
         m_sanityController.UpdateSanityBar(CurrentSanity);
+        m_gunController.GunHandling();
         if (m_playerMovement == null) return;
         m_playerMovement.Move(m_movementActions.Walk.ReadValue<Vector2>(), m_characterController);
         m_playerMovement.Look();

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8079742074780773793}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,13 +57,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7650729036762577344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7e501a71f4c9ad4bbf60080ed0f7c5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1462d7d1f34e0cb41911f67196976d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_target: {fileID: 0}
-  m_detectionRange: 3
-  m_explodingRange: 0.3
-  m_patrollingRange: 3
+  m_detectionRange: 5
+  m_grabbingRange: 2
+  m_patrollingRange: 5
   m_speed: 1
   m_rotationSpeed: 3
 --- !u!33 &6386746574656903647

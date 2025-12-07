@@ -348,7 +348,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -463,14 +463,14 @@ PrefabInstance:
       propertyPath: m_playerCam
       value: 
       objectReference: {fileID: 1506999521}
-    - target: {fileID: 3911009833819886396, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
-      propertyPath: m_sanityLossPerSecond
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4530164588005434083, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
       propertyPath: m_playerCam
       value: 
       objectReference: {fileID: 1506999521}
+    - target: {fileID: 4921932101799039602, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
+      propertyPath: m_timeToReloadBullet
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -488,13 +488,13 @@ PrefabInstance:
       propertyPath: m_target
       value: 
       objectReference: {fileID: 735009312}
+    - target: {fileID: 3759901572468880953, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
+      propertyPath: m_grabbingRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7650729036762577344, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
       propertyPath: m_Name
       value: Bomb
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650729036762577344, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7934255136166656513, guid: b7175d9856ceccb429bcf3acaaa03466, type: 3}
       propertyPath: m_LocalPosition.x

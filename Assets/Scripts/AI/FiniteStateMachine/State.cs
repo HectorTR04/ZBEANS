@@ -2,7 +2,7 @@
 {
     public abstract class State
     {
-        protected BombAgent m_agent;
+        protected ZombieAgent m_agent;
 
         public abstract void Enter();
 

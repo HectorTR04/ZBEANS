@@ -7,7 +7,7 @@ public class PatrolState : State
 
     private int m_currentPatrolIndex = 0;
 
-    public PatrolState(BombAgent agent, Vector3 lastPosition)
+    public PatrolState(ZombieAgent agent, Vector3 lastPosition)
     {
         m_agent = agent;
         m_lastPosition = lastPosition;

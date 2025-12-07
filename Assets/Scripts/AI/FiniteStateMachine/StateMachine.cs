@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    private BombAgent m_agent;
+    private ZombieAgent m_agent;
     private State currentState;
     public State CurrentState { get { return currentState; } }
 
     void Start()
     {
-        m_agent = GetComponent<BombAgent>();
+        m_agent = GetComponent<ZombieAgent>();
         currentState = new PatrolState(m_agent, m_agent.transform.position);
         currentState.Enter();
     }
