@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.AI.FiniteStateMachine;
+using UnityEngine;
 
 public class GrabbingState : State
 {
@@ -8,11 +9,19 @@ public class GrabbingState : State
     }
     public override void Enter()
     {
-        //Debug.Log($"Entered Exploding State");
+        m_agent.AttackTimer = 0f;
     }
     public override void Update()
     {
-        m_agent.IsGrabbing = true;
+        m_agent.AttackTimer += Time.deltaTime;
+        if (m_agent.AttackTimer >= m_agent.AttackCooldown)
+        {
+            if (m_agent.Target.TryGetComponent<StatusController>(out var statusController))
+            {
+                statusController.TakeDamage(m_agent);
+                m_agent.AttackTimer = 0f;
+            }
+        }
     }
     public override void Exit()
     {

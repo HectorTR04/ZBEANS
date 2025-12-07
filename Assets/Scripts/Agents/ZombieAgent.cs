@@ -9,14 +9,19 @@ public class ZombieAgent : MonoBehaviour
     [SerializeField] private float m_patrollingRange;
     [SerializeField] private float m_speed;
     [SerializeField] private float m_rotationSpeed;
+    [SerializeField] private float m_scoreOnDeath;
 
-    public bool IsGrabbing { get; set; }
+    [SerializeField] private float m_attackCooldown;
+
     public Vector3[] PatrolPoints { get; set; }
     public float Speed { get { return m_speed; } }
     public float RotationSpeed { get { return m_rotationSpeed; } }
     public Transform Target { get { return m_target; } }
     public float PatrollingRange { get { return m_patrollingRange; } }
     public float Health { get; set; }
+    public float Damage { get; set; }
+    public float AttackTimer { get; set; }
+    public float AttackCooldown { get  { return m_attackCooldown; } }
 
     private StateMachine m_stateMachine;
 
@@ -25,8 +30,8 @@ public class ZombieAgent : MonoBehaviour
     {
         PatrolPoints = new Vector3[4];
         m_stateMachine = GetComponent<StateMachine>();
-        IsGrabbing = false;
         Health = 3;
+        Damage = 10;
     }
     void Update()
     {
@@ -44,11 +49,16 @@ public class ZombieAgent : MonoBehaviour
         }
         if(Health <= 0)
         {
+            PlayerController player = m_target.gameObject.GetComponent<PlayerController>();
+            if(player != null)
+            {
+                player.IncreaseScore(m_scoreOnDeath);
+            }
             gameObject.SetActive(false);
         }
     }
     #endregion
-    public void Damage()
+    public void TakeDamage()
     {
         Health--;
     }

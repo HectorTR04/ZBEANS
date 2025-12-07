@@ -60,7 +60,7 @@ public class GunController : MonoBehaviour
             {
                 if (hit.collider.TryGetComponent<ZombieAgent>(out var hitAgent))
                 {
-                    hitAgent.Damage();
+                    hitAgent.TakeDamage();
                 }
             }
         }

@@ -1,18 +1,22 @@
 using UnityEngine;
 
 [RequireComponent (typeof(PlayerController))]
-public class SanityController : MonoBehaviour
+public class StatusController : MonoBehaviour
 {
     [SerializeField] private RectTransform m_sanityBar;
+    [SerializeField] private RectTransform m_healthBar;
 
     private PlayerController m_playerController;
 
     private readonly float m_timeBetweenUpdates = 1f;
     private float m_maxSanity;
-    private float m_sanityBarWeight;
+    private float m_maxHealth;
+    private float m_sanityBarWidth;
     private float m_sanityBarHeight;
+    private float m_healthBarWidth;
+    private float m_healthBarHeight;
     private float timer = 0f;
-    
+
 
     #region Unity Methods
     private void Awake()
@@ -21,23 +25,44 @@ public class SanityController : MonoBehaviour
     }
     #endregion
 
-    public void Initialize(float maxSanity)
+    public void Initialize(float maxSanity, float maxHealth)
     {
         m_playerController.CurrentSanity = maxSanity; 
-        m_sanityBarWeight = m_sanityBar.rect.width;
+        m_playerController.CurrentHealth = maxHealth;
+        m_sanityBarWidth = m_sanityBar.rect.width;
         m_sanityBarHeight = m_sanityBar.rect.height;
+        m_healthBarWidth = m_healthBar.rect.width;
+        m_healthBarHeight = m_healthBar.rect.height;
         m_maxSanity = maxSanity;
+        m_maxHealth = maxHealth;
     }
 
     public void UpdateSanity(float sanityGain, float sanityLoss)
     {
         timer += Time.deltaTime;
-        if(timer > m_timeBetweenUpdates)
+        if (timer > m_timeBetweenUpdates)
         {
             IncreaseSanity(sanityGain);
             DecreaseSanity(sanityLoss);
             timer = 0f;
         }
+    }
+
+    public void TakeDamage(ZombieAgent agent)
+    {
+        m_playerController.CurrentHealth -= agent.Damage;
+    }
+
+    public void UpdateSanityBar(float currentSanity)
+    {
+        float newWidth = (currentSanity / m_maxSanity) * m_sanityBarWidth;
+        m_sanityBar.sizeDelta = new Vector2(newWidth, m_sanityBarHeight);
+    }
+
+    public void UpdateHealthBar(float currentHealth)
+    {
+        float newWidth = (currentHealth / m_maxHealth) * m_healthBarWidth;
+        m_healthBar.sizeDelta = new Vector2(newWidth, m_healthBarHeight);
     }
 
     private void IncreaseSanity(float sanityIncrease)
@@ -55,11 +80,5 @@ public class SanityController : MonoBehaviour
         {
             m_playerController.CurrentSanity -= sanityDrop;
         }
-    }
-
-    public void UpdateSanityBar(float currentSanity)
-    {
-        float newWidth = (currentSanity / m_maxSanity) * m_sanityBarWeight;
-        m_sanityBar.sizeDelta = new Vector2(newWidth, m_sanityBarHeight);
     }
 }
