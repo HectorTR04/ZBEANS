@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_maxHealth;
     [SerializeField] private float m_detectionRange;
     [SerializeField] private TextMeshProUGUI m_scoreText;
+    [SerializeField] private ParticleSystem m_smokeParticles;
 
     [Header("Sanity")]
     [SerializeField] private float m_maxSanity;
@@ -45,7 +46,6 @@ public class PlayerController : MonoBehaviour
         m_sanityController = GetComponent<StatusController>();
         m_gunController = GetComponent<GunController>();
         m_sanityController.Initialize(m_maxSanity, m_maxHealth);
-        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
@@ -61,6 +61,14 @@ public class PlayerController : MonoBehaviour
         if(CurrentHealth <= 0)
         {
             SceneManager.LoadScene("LoseMenu");
+        }
+        if (IsSmoking())
+        {
+            m_smokeParticles.gameObject.SetActive(true);
+        }
+        else
+        {
+            m_smokeParticles.gameObject.SetActive(false);
         }
     }
     #endregion
@@ -84,7 +92,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-
             if (hit.collider.CompareTag("Enemy"))
             {
                 float distance = Vector3.Distance(transform.position, hit.collider.transform.position);

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject prefab;
     public Transform player;
 
     public int poolSize = 20;
 
-    public int maxEnemies = 10;
+    public int maxObjects = 10;
     public float minSpawnDistance = 10f;
     public float maxSpawnDistance = 25f;
     public float checkInterval = 1f;
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(enemyPrefab);
+            GameObject obj = Instantiate(prefab);
             obj.SetActive(false);
             pool.Add(obj);
         }
@@ -41,15 +41,15 @@ public class Spawner : MonoBehaviour
 
             int active = GetActiveCount();
 
-            if (active < maxEnemies)
+            if (active < maxObjects)
             {
-                SpawnEnemy();
+                Spawn();
             }
         }
     }
-    private void SpawnEnemy()
+    private void Spawn()
     {
-        GameObject enemy = GetEnemy();
+        GameObject enemy = GetObject();
         if (enemy == null) return;
 
         Vector3 spawnPos = RandomSpawnPointAroundPlayer();
@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
         enemy.SetActive(true);
     }
 
-    private GameObject GetEnemy()
+    private GameObject GetObject()
     {
         foreach (var obj in pool)
         {

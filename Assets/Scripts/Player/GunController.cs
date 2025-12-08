@@ -6,12 +6,16 @@ public class GunController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_ammoText;
     [SerializeField] private float m_timeBetweenFiring;
     [SerializeField] private float m_timeToReloadBullet;
+    [SerializeField] private AudioSource m_gunAudio;
+
     private PlayerController m_playerController;
     private float m_currentAmmo;
     private float m_maxAmmo;
     private float m_reserveAmmo;
     private bool m_canFire;
     private float timer;
+    private float m_aimAssist = 0.5f;
+    private float m_maxDistance = 10f;
 
     private void Awake()
     {
@@ -23,11 +27,17 @@ public class GunController : MonoBehaviour
         m_canFire = true;
     }
 
+    public void PickUpAmmo(float ammoToAdd)
+    {
+        m_reserveAmmo += ammoToAdd;
+    }
+
     public void GunHandling()
     {
         timer += Time.deltaTime;
         if (Input.GetMouseButton(0) && m_currentAmmo > 0 && m_canFire)
         {
+            m_gunAudio.Play();
             m_currentAmmo--;
             m_canFire = false;
             if (m_playerController.IsLookingAtEnemy())
@@ -54,7 +64,7 @@ public class GunController : MonoBehaviour
     {
         Ray ray = new(transform.position, transform.forward);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.SphereCast(ray, m_aimAssist, out RaycastHit hit, m_maxDistance))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
