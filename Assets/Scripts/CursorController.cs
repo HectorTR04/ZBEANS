@@ -12,7 +12,6 @@ public class CursorController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Cursor.lockState = CursorLockMode.Confined;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -22,6 +21,7 @@ public class CursorController : MonoBehaviour
     }
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.SetCursor(m_defaultTexture, m_clickPosition, CursorMode.Auto);
     }
     #endregion

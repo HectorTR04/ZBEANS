@@ -7838,9 +7838,9 @@ MonoBehaviour:
   player: {fileID: 735009312}
   poolSize: 20
   maxObjects: 5
-  minSpawnDistance: 10
-  maxSpawnDistance: 15
-  checkInterval: 20
+  minSpawnDistance: 5
+  maxSpawnDistance: 10
+  checkInterval: 10
 --- !u!4 &1647745616
 Transform:
   m_ObjectHideFlags: 0
@@ -10531,6 +10531,10 @@ PrefabInstance:
       propertyPath: m_playerCam
       value: 
       objectReference: {fileID: 1506999521}
+    - target: {fileID: 4530164588005434083, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
+      propertyPath: m_speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4530164588005434083, guid: b68f3649b7963de4387d27bca807bbcb, type: 3}
       propertyPath: m_playerCam
       value: 

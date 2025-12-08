@@ -41,13 +41,15 @@ public class PlayerController : MonoBehaviour
     {
         m_input = new PlayerInput();
         m_movementActions = m_input.Movement;
+    }
+    private void Start()
+    {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_characterController = GetComponent<CharacterController>();
         m_sanityController = GetComponent<StatusController>();
         m_gunController = GetComponent<GunController>();
         m_sanityController.Initialize(m_maxSanity, m_maxHealth);
     }
-
     private void Update()
     {
         m_sanityController.UpdateSanity(m_sanityGainPerSecond, m_sanityLossPerSecond);
