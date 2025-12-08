@@ -48,7 +48,7 @@ public class StatusController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(ZombieAgent agent)
+    public void TakeDamage(EnemyAgent agent)
     {
         m_playerController.CurrentHealth -= agent.Damage;
     }

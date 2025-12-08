@@ -24,6 +24,4 @@ public class LightFlicker : MonoBehaviour
         m_timer = 0;
     }
     #endregion
-
-
 }

@@ -1,27 +1,27 @@
 ﻿using System;
 
-public class ConditionNode : DecisionNode
+public class ConditionNode : IDecisionNode
 {
-    private Func<bool> condition;
-    private DecisionNode trueNode;
-    private DecisionNode falseNode;
+    private readonly Func<bool> m_condition;
+    private readonly IDecisionNode m_trueNode;
+    private readonly IDecisionNode m_falseNode;
 
-    public ConditionNode(Func<bool> condition, DecisionNode trueNode, DecisionNode falseNode)
+    public ConditionNode(Func<bool> condition, IDecisionNode trueNode, IDecisionNode falseNode)
     {
-        this.condition = condition;
-        this.trueNode = trueNode;
-        this.falseNode = falseNode;
+        m_condition = condition;
+        m_trueNode = trueNode;
+        m_falseNode = falseNode;
     }
 
     public void Evaluate()
     {
-        if (condition())
+        if (m_condition())
         {
-            trueNode.Evaluate(); 
+            m_trueNode.Evaluate(); 
         }
         else
         {
-            falseNode.Evaluate();
+            m_falseNode.Evaluate();
         }
     }
 }

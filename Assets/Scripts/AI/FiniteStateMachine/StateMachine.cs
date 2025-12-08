@@ -7,6 +7,7 @@ public class StateMachine : MonoBehaviour
     private State currentState;
     public State CurrentState { get { return currentState; } }
 
+    #region Unity Methods
     void Start()
     {
         m_agent = GetComponent<ZombieAgent>();
@@ -18,6 +19,7 @@ public class StateMachine : MonoBehaviour
     {
         currentState.Update();
     }
+    #endregion
 
     public void TransitionToNewState(State nextState)
     {

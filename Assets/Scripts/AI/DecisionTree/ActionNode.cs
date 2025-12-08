@@ -1,15 +1,15 @@
 ﻿using System;
-public class ActionNode : DecisionNode
+public class ActionNode : IDecisionNode
 {
-    private Action action;
+    private readonly Action m_action;
 
     public ActionNode(Action action)
     {
-        this.action = action;
+        m_action = action;
     }
 
     public void Evaluate()
     {
-        action();
+        m_action();
     }
 }

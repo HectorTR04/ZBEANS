@@ -54,6 +54,7 @@ public class Spawner : MonoBehaviour
 
         Vector3 spawnPos = RandomSpawnPointAroundPlayer();
         enemy.transform.position = spawnPos;
+        
         enemy.SetActive(true);
     }
 

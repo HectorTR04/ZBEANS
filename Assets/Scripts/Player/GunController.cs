@@ -68,7 +68,7 @@ public class GunController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                if (hit.collider.TryGetComponent<ZombieAgent>(out var hitAgent))
+                if (hit.collider.TryGetComponent<EnemyAgent>(out var hitAgent))
                 {
                     hitAgent.TakeDamage();
                 }
