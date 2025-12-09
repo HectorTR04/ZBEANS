@@ -1,4 +1,5 @@
 ﻿using System;
+
 public class ActionNode : IDecisionNode
 {
     private readonly Action m_action;

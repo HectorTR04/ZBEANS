@@ -7,12 +7,11 @@ public class FastZombieAgent : EnemyAgent
     private bool m_patrolPointsSet;
 
     #region Unity Method
-    void Start()
+    void Awake()
     {
         PatrolPoints = new Vector3[4];
         Health = 1;
         Damage = 10;
-        AttackTimer = 0f;
         m_patrolPointsSet = false;
 
         void patrolAction() => Patrol();
@@ -84,8 +83,6 @@ public class FastZombieAgent : EnemyAgent
 
     private void SetPatrolPoints()
     {
-        if (PatrolPoints == null || PatrolPoints.Length == 0) return;
-
         PatrolPoints[0] = transform.position;
         for (int i = 1; i < PatrolPoints.Length; i++)
         {

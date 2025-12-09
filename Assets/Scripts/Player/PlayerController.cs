@@ -1,5 +1,3 @@
-using System;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float CurrentHealth { get; set; }
     public float CurrentSanity { get; set; }
     public float CurrentScore { get; set; }
+    public Camera PlayerCamera { get { return m_playerCam; } }
 
     #region Unity Methods
     private void OnEnable()

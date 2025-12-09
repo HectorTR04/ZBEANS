@@ -62,7 +62,7 @@ public class GunController : MonoBehaviour
 
     private void CheckEnemyHit()
     {
-        Ray ray = new(transform.position, transform.forward);
+        Ray ray = m_playerController.PlayerCamera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.SphereCast(ray, m_aimAssist, out RaycastHit hit, m_maxDistance))
         {
