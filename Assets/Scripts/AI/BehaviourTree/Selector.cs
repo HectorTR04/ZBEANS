@@ -1,24 +1,30 @@
-﻿public class Selector : Node
+﻿using UnityEngine;
+
+public class Selector : Node
 {
     public Selector(string name) : base(name) { }
 
     public override Status Process()
     {
-        if (currentChild < children.Count)
+        Debug.Log("in selector " + name);
+
+        for (int i = 0; i < children.Count; i++)
         {
-            switch (children[currentChild].Process())
+            var status = children[i].Process();
+
+            switch (status)
             {
                 case Status.Running:
                     return Status.Running;
+
                 case Status.Success:
-                    Reset();
                     return Status.Success;
-                default:
-                    currentChild++;
-                    return Status.Running;
+
+                case Status.Failure:
+                    continue;
             }
         }
-        Reset();
+
         return Status.Failure;
     }
 }

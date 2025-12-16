@@ -1,10 +1,12 @@
 ﻿using System;
+using UnityEngine;
 
 public class OperationNode : Node
 {
-    private readonly Action m_process;
+    private readonly Func<Status> m_process;
     private readonly Action m_reset;
-    public OperationNode(string name, Action process, Action reset) : base(name)
+
+    public OperationNode(string name, Func<Status> process, Action reset) : base(name)
     {
         m_process = process;
         m_reset = reset;
@@ -12,13 +14,17 @@ public class OperationNode : Node
 
     public override Status Process()
     {
-        m_process();
-        return Status.Success;  
+        Debug.Log("in operation " + name);
+        return m_process();
     }
 
     public override void Reset()
     {
-        m_reset(); 
+        if(m_reset == null)
+        {
+            return;
+        }
+        m_reset();
     }
 }
 

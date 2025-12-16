@@ -1,9 +1,12 @@
-﻿public class Sequence : Node
+﻿using UnityEngine;
+
+public class Sequence : Node
 {
     public Sequence(string name) : base(name) { }
 
     public override Status Process()
     {
+        Debug.Log("in sequence " + name);
         if (currentChild < children.Count)
         {
             switch (children[currentChild].Process())
